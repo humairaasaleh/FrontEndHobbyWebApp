@@ -11,7 +11,7 @@ const getWorkouts = () => {
             const workouts = res.data;
 
             for (let workout of workouts) {
-                console.log(workout);
+                // console.log(workout);
                 const workoutCol = document.createElement("div");
                 workoutCol.classList.add("col");
                 const workoutCard = document.createElement("div");
