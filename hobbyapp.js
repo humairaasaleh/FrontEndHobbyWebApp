@@ -2,6 +2,44 @@
 
 const getOutput = document.querySelector("#getOutput");
 
+// CREATE WORKOUT 
+
+document.querySelector("#workoutForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+    console.log("THIS:", this);
+    const form = this;
+    console.log("WEIGHT :", form.weight);
+
+    // const formcol = document.createElement("div");
+    // form.classList.add("add")
+    // const formCard = document.createElement("div");
+    // formCard.classList.add("card");
+    // const formBody = document.createElement("div");
+    // formBody.classList.add("card-body");
+
+        const data = {
+        workoutName: form.workoutName.value,
+        bodyPart: form.bodyPart.value,
+        targetMuscle: form.targetMuscle.value,
+        weight: form.weight.value,
+        reps: form.reps.value,
+        sets: form.sets.value
+    };
+
+    console.log("DATA: ", data);
+
+    axios
+        .post("http://localhost:8080/create", data)
+        .then(res => {
+            getWorkouts();
+            form.reset();
+            form.workoutName.focus();
+            console.log(res);
+        })
+        .catch(err => console.error(err));
+});
+
+
 // GET ALL WORKOUTS
 const getWorkouts = () => {
     axios
@@ -9,6 +47,7 @@ const getWorkouts = () => {
         .then(res => {
             console.log(res);
             const workouts = res.data;
+            getOutput.innerHTML = "";
 
             for (let workout of workouts) {
                 // console.log(workout);
@@ -74,34 +113,6 @@ const getWorkouts = () => {
         })
         .catch(err => console.error(err))
 }
-
-
-// CREATE WORKOUT 
-
-document.querySelector("#workoutForm").addEventListener("submit", function (event) {
-    event.preventDefault();
-    console.log("THIS:", this);
-    const form = this;
-    const data = {
-        workoutName: form.workoutName.value,
-        bodyPart: form.bodyPart.value,
-        targetMuscle: form.targetMuscle.value,
-        weight: form.weight.value,
-        reps: form.reps.value,
-        sets: form.sets.value
-    };
-
-    console.log("DATA: ", data);
-
-    axios
-        .post("http://localhost:8080/create", data)
-        .then(res => {
-            getWorkouts();
-            form.reset();
-            form.workoutName.focus();
-            console.log(res);
-        })
-        .catch(err => console.error(err));
-});
-
 getWorkouts();
+
+
