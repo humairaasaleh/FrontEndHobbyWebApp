@@ -20,7 +20,28 @@
         <div class="col">
             <section>
                 <h2>Workouts</h2>
-                <div id="getOutput" class="row row-cols-2 g-4"></div>
+                <div id="getOutput" class="row row-cols "></div>
+            </section>
+        </div>
+        <div class="add">
+            <section>
+                <form id="workoutForm">
+                    <h3>Add a workout</h3>
+                    <label for="workoutName" class="form-label">Workout Name:</label>
+                    <input type="text" name="workoutName" id="workoutName" class="form-control">
+                    <label for="bodyPart" class="form-label">Body Part:</label>
+                    <input type="text" name="bodyPart" id="bodyPart" class="form-control">
+                    <label for="targetMuscle" class="form-label">Target Muscle:</label>
+                    <input type="text" name="targetMuscle" id="targetMuscle" class="form-control">
+                    <label for="weight" class="form-label">Weight:</label>
+                    <input type="number" name="weight" id="weight" class="form-control">
+                    <label for="reps" class="form-label">Reps:</label>
+                    <input type="number" name="reps" id="reps" class="form-control">
+                    <label for="sets" class="form-label">Sets:</label>
+                    <input type="number" name="sets" id="sets" class="form-control">
+                    <button type="submit" class="btn btn-primary mt-2">CREATE WORKOUT</button>
+
+                </form>
             </section>
         </div>
     </main>

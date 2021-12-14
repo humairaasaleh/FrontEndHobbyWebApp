@@ -19,10 +19,10 @@ const getWorkouts = () => {
                 const workoutBody = document.createElement("div");
                 workoutBody.classList.add("card-body");
 
-                const workoutId = document.createElement("h5");
-                workoutId.classList.add("card-title");
-                workoutId.innerText = `ID ${workout.id} -`;
-                workoutBody.appendChild(workoutId);
+                // const workoutId = document.createElement("h5");
+                // workoutId.classList.add("card-title");
+                // workoutId.innerText = `ID ${workout.id} -`;
+                // workoutBody.appendChild(workoutId);
 
                 const workoutName = document.createElement("h5");
                 workoutName.classList.add("card-title");
@@ -59,8 +59,8 @@ const getWorkouts = () => {
                 workoutDelete.classList.add("btn", "btn-danger");
                 workoutDelete.addEventListener("click", () => {
                     axios
-                        .delete(`http://localhost:8080/remove/${workoutId}`)
-                        .then(res => getworkouts())
+                        .delete(`http://localhost:8080/remove/${workout.id}`)
+                        .then(res => getWorkouts())
                         .catch(err => console.error(err))
                 })
 
@@ -74,4 +74,34 @@ const getWorkouts = () => {
         })
         .catch(err => console.error(err))
 }
+
+
+// CREATE WORKOUT 
+
+document.querySelector("#workoutForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+    console.log("THIS:", this);
+    const form = this;
+    const data = {
+        workoutName: form.workoutName.value,
+        bodyPart: form.bodyPart.value,
+        targetMuscle: form.targetMuscle.value,
+        weight: form.weight.value,
+        reps: form.reps.value,
+        sets: form.sets.value
+    };
+
+    console.log("DATA: ", data);
+
+    axios
+        .post("http://localhost:8080/create", data)
+        .then(res => {
+            getWorkouts();
+            form.reset();
+            form.workoutName.focus();
+            console.log(res);
+        })
+        .catch(err => console.error(err));
+});
+
 getWorkouts();
