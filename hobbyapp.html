@@ -17,10 +17,17 @@
     <h1>Gym Workouts</h1>
 
     <main class="container">
+
+        <div class="col">
+            <section>
+                <label for="filter">Search:</label>
+                <input type="text" id="filter">
+            </section>
+        </div>
         <div class="col">
             <section>
                 <h2>Workouts</h2>
-                <div id="getOutput" class="row row-cols "></div>
+                <div id="getOutput" class="row row-cols-3 g-4"></div>
             </section>
         </div>
         <div class="add">
@@ -39,10 +46,11 @@
                     <input type="number" name="reps" id="reps" class="form-control">
                     <label for="sets" class="form-label">Sets:</label>
                     <input type="number" name="sets" id="sets" class="form-control">
-                    <button type="submit" class="btn btn-primary mt-2">CREATE WORKOUT</button>
+                    <button type="submit" class="btn btn-primary mt-4">CREATE WORKOUT</button>
                 </form>
             </section>
         </div>
+
     </main>
     <script src="hobbyapp.js"></script>
 </body>
