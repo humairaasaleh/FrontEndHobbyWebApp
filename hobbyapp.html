@@ -30,6 +30,8 @@
                 <div id="getOutput" class="row row-cols-3 g-4"></div>
             </section>
         </div>
+
+        <!-- CREATE -->
         <div class="add">
             <section>
                 <form id="workoutForm">
@@ -46,9 +48,44 @@
                     <input type="number" name="reps" id="reps" class="form-control">
                     <label for="sets" class="form-label">Sets:</label>
                     <input type="number" name="sets" id="sets" class="form-control">
-                    <button type="submit" class="btn btn-primary mt-4">CREATE WORKOUT</button>
+                    <button type="submit" class="btn btn-success mt-4">CREATE WORKOUT</button>
                 </form>
             </section>
+        </div>
+
+        <!-- UPDATE -->
+        <button type="update" class="btn btn-info btn-lg" data-toggle="modal" data-target="#updateModal">UPDATE</button>
+        <div id="updateModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Update Workout</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form id="updateForm">
+                        <label for="workoutName" class="form-label">Workout Name:</label>
+                        <input type="text" name="workoutName" id="workoutName" class="form-control">
+                        <label for="bodyPart" class="form-label">Body Part:</label>
+                        <input type="text" name="bodyPart" id="bodyPart" class="form-control">
+                        <label for="targetMuscle" class="form-label">Target Muscle:</label>
+                        <input type="text" name="targetMuscle" id="targetMuscle" class="form-control">
+                        <label for="weight" class="form-label">Weight:</label>
+                        <input type="number" name="weight" id="weight" class="form-control">
+                        <label for="reps" class="form-label">Reps:</label>
+                        <input type="number" name="reps" id="reps" class="form-control">
+                        <label for="sets" class="form-label">Sets:</label>
+                        <input type="number" name="sets" id="sets" class="form-control">
+                        <button type="submit" class="btn btn-success mt-4">UPDATE</button>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">UPDATE</button>
+                  </div>
+                </div>
+            
+              </div>
         </div>
 
     </main>
