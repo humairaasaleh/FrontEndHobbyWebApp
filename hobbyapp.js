@@ -2,6 +2,37 @@
 
 const getOutput = document.querySelector("#getOutput");
 
+// UPDATE METHOD
+
+// var updateWorkout = new bootstrap.Modal(document.getElementById('updateModal'), options);
+
+// document.querySelector("#updateModal").addEventListener("update", function(event){
+//     $("#updateModal").modal();
+//     event.preventDefault();
+//     getOutput.innerHTML = "";
+
+//     const form = this;
+//     const data = {
+//         workoutName: form.workoutName.value,
+//         bodyPart: form.bodyPart.value,
+//         targetMuscle: form.targetMuscle.value,
+//         weight: form.weight.value,
+//         reps: form.reps.value,
+//         sets: form.sets.value
+//     };
+
+//     axios
+//         .put("http://localhost:8080/replace/${workout.id}", data)
+//         .then(res => {
+//             getWorkouts();
+//             form.reset();
+//             form.workoutName.focus();
+//             console.log(res);
+//         })
+//         .catch(err => console.error(err));
+// });
+
+
 // CREATE WORKOUT 
 
 document.querySelector("#workoutForm").addEventListener("submit", function (event) {
@@ -31,6 +62,7 @@ document.querySelector("#workoutForm").addEventListener("submit", function (even
     axios
         .post("http://localhost:8080/create", data)
         .then(res => {
+            alert("Workout created!");
             getWorkouts();
             form.reset();
             form.workoutName.focus();
@@ -103,11 +135,38 @@ const getWorkouts = () => {
                         .catch(err => console.error(err))
                 })
 
+                // const workoutUpdate = document.createElement("button");
+                // workoutUpdate.innerText = "UPDATE";
+                // workoutUpdate.classList.add("btn", "btn-info");
+                // workoutUpdate.querySelector("#updateForm").addEventListener("click", function (event) {
+                //     alert("Update workout:")
+                //     $("#updateModal").modal();
+                //     event.preventDefault();
+                //     const form = this;
+                //     const data = {
+                //         workoutName: form.workoutName.value,
+                //         bodyPart: form.bodyPart.value,
+                //         targetMuscle: form.targetMuscle.value,
+                //         weight: form.weight.value,
+                //         reps: form.reps.value,
+                //         sets: form.sets.value
+                //     };
+
+                //     axios
+                //         .put(`http://localhost:8080/replace/${workout.id}`, data)
+                //         .then(res => {
+                //             getWorkouts();
+                //             getOutput.innerHTML = "";
+                //             console.log(res);
+                //         })
+                //         .catch(err => console.error(err));
+                // });
+
                 workoutBody.appendChild(workoutDelete);
+                // workoutBody.appendChild(workoutUpdate);
                 workoutCard.appendChild(workoutBody);
                 workoutCol.appendChild(workoutCard);
                 getOutput.appendChild(workoutCol);
-
             }
 
         })
@@ -182,15 +241,12 @@ const renderWorkouts = (filter) => {
                         .delete(`http://localhost:8080/remove/${workout.id}`)
                         .then(res => getWorkouts())
                         .catch(err => console.error(err))
-
                 })
-
                 workoutBody.appendChild(workoutDelete);
                 workoutCard.appendChild(workoutBody);
                 workoutCol.appendChild(workoutCard);
                 getOutput.appendChild(workoutCol);
             }
-
         })
         .catch(err => console.error(err))
 }
