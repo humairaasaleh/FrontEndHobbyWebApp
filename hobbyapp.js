@@ -1,10 +1,10 @@
 "use strict"
 
 const getOutput = document.querySelector("#getOutput");
-
+getOutput.innerHTML = "";
 // UPDATE METHOD
 
-// var updateWorkout = new bootstrap.Modal(document.getElementById('updateModal'), options);
+// var updateWorkout = new bootstrap.Modal(document.getElementById('updateModal'));
 
 // document.querySelector("#updateModal").addEventListener("update", function(event){
 //     $("#updateModal").modal();
@@ -125,9 +125,24 @@ const getWorkouts = () => {
                 sets.innerText = `Sets: ${workout.sets}`;
                 workoutBody.appendChild(sets);
 
+                // const workoutUpdate = document.createElement("button");
+                // workoutUpdate.innerText = "UPDATE WORKOUT";
+                // workoutUpdate.classList.add("btn", "btn-info", "mt-2");
+                // document.querySelector(`#updateForm`).addEventListener("click", function(){
+                //     var updateWorkout = new bootstrap.Modal(document.getElementById('updateModal'), data);
+                //     axios
+                //         .put(`http://localhost:8080/replace/${workout.id}`,data)
+                //         .then(res => {
+                //                     getWorkouts();
+                //                     console.log(res);
+                //                 })
+                //                 .catch(err => console.error(err))
+                //             })
+            
+
                 const workoutDelete = document.createElement("button");
                 workoutDelete.innerText = "REMOVE WORKOUT";
-                workoutDelete.classList.add("btn", "btn-danger");
+                workoutDelete.classList.add("btn", "btn-danger", "mt-2");
                 workoutDelete.addEventListener("click", () => {
                     axios
                         .delete(`http://localhost:8080/remove/${workout.id}`)
@@ -135,35 +150,8 @@ const getWorkouts = () => {
                         .catch(err => console.error(err))
                 })
 
-                // const workoutUpdate = document.createElement("button");
-                // workoutUpdate.innerText = "UPDATE";
-                // workoutUpdate.classList.add("btn", "btn-info");
-                // workoutUpdate.querySelector("#updateForm").addEventListener("click", function (event) {
-                //     alert("Update workout:")
-                //     $("#updateModal").modal();
-                //     event.preventDefault();
-                //     const form = this;
-                //     const data = {
-                //         workoutName: form.workoutName.value,
-                //         bodyPart: form.bodyPart.value,
-                //         targetMuscle: form.targetMuscle.value,
-                //         weight: form.weight.value,
-                //         reps: form.reps.value,
-                //         sets: form.sets.value
-                //     };
-
-                //     axios
-                //         .put(`http://localhost:8080/replace/${workout.id}`, data)
-                //         .then(res => {
-                //             getWorkouts();
-                //             getOutput.innerHTML = "";
-                //             console.log(res);
-                //         })
-                //         .catch(err => console.error(err));
-                // });
-
-                workoutBody.appendChild(workoutDelete);
                 // workoutBody.appendChild(workoutUpdate);
+                workoutBody.appendChild(workoutDelete);
                 workoutCard.appendChild(workoutBody);
                 workoutCol.appendChild(workoutCard);
                 getOutput.appendChild(workoutCol);
@@ -235,7 +223,7 @@ const renderWorkouts = (filter) => {
 
                 const workoutDelete = document.createElement("button");
                 workoutDelete.innerText = "REMOVE WORKOUT";
-                workoutDelete.classList.add("btn", "btn-danger");
+                workoutDelete.classList.add("btn", "btn-danger", "mt-2");
                 workoutDelete.addEventListener("click", () => {
                     axios
                         .delete(`http://localhost:8080/remove/${workout.id}`)
