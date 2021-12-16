@@ -4,7 +4,8 @@ const getOutput = document.querySelector("#getOutput");
 getOutput.innerHTML = "";
 // UPDATE METHOD
 
-// var updateWorkout = new bootstrap.Modal(document.getElementById('updateModal'));
+var updateModal = new bootstrap.Modal(document.getElementById('updateModal'));
+
 
 // document.querySelector("#updateModal").addEventListener("update", function(event){
 //     $("#updateModal").modal();
@@ -36,17 +37,11 @@ getOutput.innerHTML = "";
 // CREATE WORKOUT 
 
 document.querySelector("#workoutForm").addEventListener("submit", function (event) {
+    getOutput.innerHTML = "";
     event.preventDefault();
     console.log("THIS:", this);
     const form = this;
     console.log("WEIGHT :", form.weight);
-
-    // const formcol = document.createElement("div");
-    // form.classList.add("add")
-    // const formCard = document.createElement("div");
-    // formCard.classList.add("card");
-    // const formBody = document.createElement("div");
-    // formBody.classList.add("card-body");
 
     const data = {
         workoutName: form.workoutName.value,
@@ -125,9 +120,14 @@ const getWorkouts = () => {
                 sets.innerText = `Sets: ${workout.sets}`;
                 workoutBody.appendChild(sets);
 
-                // const workoutUpdate = document.createElement("button");
-                // workoutUpdate.innerText = "UPDATE WORKOUT";
-                // workoutUpdate.classList.add("btn", "btn-info", "mt-2");
+                const workoutUpdate = document.createElement("button");
+                workoutUpdate.innerText = "UPDATE WORKOUT";
+                workoutUpdate.classList.add("btn", "btn-info", "mt-2");
+                workoutUpdate.addEventListener("click", function(){
+                    updateModal.show();
+                })
+
+
                 // document.querySelector(`#updateForm`).addEventListener("click", function(){
                 //     var updateWorkout = new bootstrap.Modal(document.getElementById('updateModal'), data);
                 //     axios
@@ -150,7 +150,7 @@ const getWorkouts = () => {
                         .catch(err => console.error(err))
                 })
 
-                // workoutBody.appendChild(workoutUpdate);
+                workoutBody.appendChild(workoutUpdate);
                 workoutBody.appendChild(workoutDelete);
                 workoutCard.appendChild(workoutBody);
                 workoutCol.appendChild(workoutCard);
@@ -221,6 +221,13 @@ const renderWorkouts = (filter) => {
                 sets.innerText = `Sets: ${workout.sets}`;
                 workoutBody.appendChild(sets);
 
+                const workoutUpdate = document.createElement("button");
+                workoutUpdate.innerText = "UPDATE WORKOUT";
+                workoutUpdate.classList.add("btn", "btn-info", "mt-2");
+                workoutUpdate.addEventListener("click", function(){
+                    updateModal.show();
+                })
+
                 const workoutDelete = document.createElement("button");
                 workoutDelete.innerText = "REMOVE WORKOUT";
                 workoutDelete.classList.add("btn", "btn-danger", "mt-2");
@@ -230,6 +237,8 @@ const renderWorkouts = (filter) => {
                         .then(res => getWorkouts())
                         .catch(err => console.error(err))
                 })
+
+                workoutBody.appendChild(workoutUpdate);
                 workoutBody.appendChild(workoutDelete);
                 workoutCard.appendChild(workoutBody);
                 workoutCol.appendChild(workoutCard);
