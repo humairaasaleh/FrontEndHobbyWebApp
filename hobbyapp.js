@@ -32,6 +32,7 @@ document.querySelector("#workoutForm").addEventListener("submit", function (even
     axios
         .post("http://localhost:8080/create", data)
         .then(res => {
+            getOutput.innerHTML = "";
             alert("Workout created!");
             getWorkouts();
             form.reset();
@@ -95,12 +96,12 @@ const getWorkouts = () => {
                 sets.innerText = `Sets: ${workout.sets}`;
                 workoutBody.appendChild(sets);
 
-                // const workoutUpdate = document.createElement("button");
-                // workoutUpdate.innerText = "UPDATE WORKOUT";
-                // workoutUpdate.classList.add("btn", "btn-info", "mt-2");
-                // workoutUpdate.addEventListener("click", function(){
-                //     updateModal.show();
-                // })
+                const workoutUpdate = document.createElement("button");
+                workoutUpdate.innerText = "UPDATE WORKOUT";
+                workoutUpdate.classList.add("btn", "btn-info", "mt-2");
+                workoutUpdate.addEventListener("click", function(){
+                    updateModal.show();
+                })
 
                 const workoutDelete = document.createElement("button");
                 workoutDelete.innerText = "REMOVE WORKOUT";
@@ -214,6 +215,7 @@ const renderWorkouts = (filter) => {
                         axios
                             .put(`http://localhost:8080/replace/${workout.id}`,data)
                             .then(res => {
+                                getOutput.innerHTML = "";
                                 alert("Workout updated!");
                                 getWorkouts();
                                 form.reset();
@@ -244,4 +246,5 @@ const renderWorkouts = (filter) => {
         })
         .catch(err => console.error(err))
 }
+getOutput.innerHTML = "";
 renderWorkouts();
