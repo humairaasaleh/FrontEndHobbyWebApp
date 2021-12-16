@@ -2,36 +2,11 @@
 
 const getOutput = document.querySelector("#getOutput");
 getOutput.innerHTML = "";
+
+
 // UPDATE METHOD
 
 var updateModal = new bootstrap.Modal(document.getElementById('updateModal'));
-
-
-// document.querySelector("#updateModal").addEventListener("update", function(event){
-//     $("#updateModal").modal();
-//     event.preventDefault();
-//     getOutput.innerHTML = "";
-
-//     const form = this;
-//     const data = {
-//         workoutName: form.workoutName.value,
-//         bodyPart: form.bodyPart.value,
-//         targetMuscle: form.targetMuscle.value,
-//         weight: form.weight.value,
-//         reps: form.reps.value,
-//         sets: form.sets.value
-//     };
-
-//     axios
-//         .put("http://localhost:8080/replace/${workout.id}", data)
-//         .then(res => {
-//             getWorkouts();
-//             form.reset();
-//             form.workoutName.focus();
-//             console.log(res);
-//         })
-//         .catch(err => console.error(err));
-// });
 
 
 // CREATE WORKOUT 
@@ -120,25 +95,12 @@ const getWorkouts = () => {
                 sets.innerText = `Sets: ${workout.sets}`;
                 workoutBody.appendChild(sets);
 
-                const workoutUpdate = document.createElement("button");
-                workoutUpdate.innerText = "UPDATE WORKOUT";
-                workoutUpdate.classList.add("btn", "btn-info", "mt-2");
-                workoutUpdate.addEventListener("click", function(){
-                    updateModal.show();
-                })
-
-
-                // document.querySelector(`#updateForm`).addEventListener("click", function(){
-                //     var updateWorkout = new bootstrap.Modal(document.getElementById('updateModal'), data);
-                //     axios
-                //         .put(`http://localhost:8080/replace/${workout.id}`,data)
-                //         .then(res => {
-                //                     getWorkouts();
-                //                     console.log(res);
-                //                 })
-                //                 .catch(err => console.error(err))
-                //             })
-            
+                // const workoutUpdate = document.createElement("button");
+                // workoutUpdate.innerText = "UPDATE WORKOUT";
+                // workoutUpdate.classList.add("btn", "btn-info", "mt-2");
+                // workoutUpdate.addEventListener("click", function(){
+                //     updateModal.show();
+                // })
 
                 const workoutDelete = document.createElement("button");
                 workoutDelete.innerText = "REMOVE WORKOUT";
@@ -226,6 +188,41 @@ const renderWorkouts = (filter) => {
                 workoutUpdate.classList.add("btn", "btn-info", "mt-2");
                 workoutUpdate.addEventListener("click", function(){
                     updateModal.show();
+
+                    document.querySelector("#closeModal").addEventListener("submit", function(event){
+                        updateModal.hide();
+                    })
+
+                    document.querySelector("#updateForm").addEventListener("submit", function (event) {
+                        getOutput.innerHTML = "";
+                        event.preventDefault();
+                        console.log("THIS:", this);
+                        const form = this;
+                        console.log("WEIGHT :", form.weight);
+                    
+                        const data = {
+                            workoutName: form.workoutName.value,
+                            bodyPart: form.bodyPart.value,
+                            targetMuscle: form.targetMuscle.value,
+                            weight: form.weight.value,
+                            reps: form.reps.value,
+                            sets: form.sets.value
+                        };
+                    
+                        console.log("DATA: ", data);
+                    
+                        axios
+                            .put(`http://localhost:8080/replace/${workout.id}`,data)
+                            .then(res => {
+                                alert("Workout updated!");
+                                getWorkouts();
+                                form.reset();
+                                form.workoutName.focus();
+                                console.log(res);
+                                updateModal.hide();
+                            })
+                            .catch(err => console.error(err));
+                    });
                 })
 
                 const workoutDelete = document.createElement("button");
