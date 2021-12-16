@@ -32,9 +32,9 @@
         </div>
         <div class="col">
             <h2>Workouts</h2>
-                <section class="cards">
-                    <div id="getOutput" class="row row-cols-4 g-4"></div>
-                </section>
+            <section class="cards">
+                <div id="getOutput" class="row row-cols-4 g-4"></div>
+            </section>
         </div>
 
         <!-- CREATE -->
@@ -60,13 +60,14 @@
         </div>
 
         <!-- UPDATE -->
-        <button type="update" class="btn btn-info mt-3" data-toggle="modal" data-target="#updateModal">UPDATE</button>
         <div id="updateModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <form id="closeModal">
+                            <button type="submit" class="close" data-dismiss="modal"><span>&times;</span></button>
+                        </form>
                         <h4 class="modal-title">Update Workout</h4>
                     </div>
                     <div class="modal-body">
